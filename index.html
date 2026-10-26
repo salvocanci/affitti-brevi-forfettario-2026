@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kit Conformità Affitti Brevi 2026 (CIN, BDSR, Alloggiati) & Calcolatore Regime Forfettario Excel</title>
+  <meta name="description" content="Guida pratica e calcolatore interattivo 2026 per Affitti Brevi (CIN, BDSR, Alloggiati Web, cedolare secca 21%/26%, regole 21 regioni) e Regime Forfettario 2026. Scarica la tabella gratuita o il Kit completo con codice sconto LANCIO.">
+  <style>
+    :root { --bg: #f8fafc; --card: #ffffff; --primary: #0f172a; --accent: #2563eb; --green: #16a34a; --border: #e2e8f0; }
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+    body { margin: 0; background: var(--bg); color: var(--primary); line-height: 1.6; }
+    header { background: var(--primary); color: #fff; padding: 2.5rem 1.25rem; text-align: center; }
+    header h1 { margin: 0 0 0.75rem; font-size: 2rem; }
+    header p { max-width: 760px; margin: 0 auto 1.25rem; opacity: 0.9; }
+    .badge { display: inline-block; background: #f59e0b; color: #111827; font-weight: 700; padding: 0.35rem 0.85rem; border-radius: 999px; font-size: 0.9rem; }
+    main { max-width: 1040px; margin: 2rem auto; padding: 0 1.25rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+    .card h2, .card h3 { margin-top: 0; }
+    .btn { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; padding: 0.75rem 1.25rem; border-radius: 8px; font-weight: 600; margin-top: 0.75rem; }
+    .btn-green { background: var(--green); }
+    .calc-box label { display: block; font-weight: 600; margin-top: 0.75rem; }
+    .calc-box input, .calc-box select { width: 100%; padding: 0.6rem; margin-top: 0.25rem; border: 1px solid var(--border); border-radius: 6px; font-size: 1rem; }
+    .result { margin-top: 1rem; padding: 1rem; background: #eff6ff; border-left: 4px solid var(--accent); border-radius: 6px; font-weight: 600; }
+    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: #fff; }
+    th, td { border: 1px solid var(--border); padding: 0.75rem; text-align: left; }
+    th { background: #f1f5f9; }
+    footer { text-align: center; padding: 2rem 1rem; color: #64748b; font-size: 0.9rem; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="badge">AGGIORNATO OTTOBRE 2026 — L. 199/2025, CdS 9101/2025 & Corte Cost. 163/2026</span>
+    <h1>Hub Operativo Affitti Brevi 2026, Regime Forfettario & Automazione</h1>
+    <p>Calcolatori immediati, checklist ispezioni CIN / BDSR / Alloggiati Web, regole delle 21 regioni/province autonome e strumenti pronti all'uso per host, proprietari e liberi professionisti.</p>
+    <a class="btn btn-green" href="https://aushciao.gumroad.com/l/juzsbw">Scarica Gratis la Tabella 21 Regioni (PDF €0)</a>
+    <a class="btn" href="https://aushciao.gumroad.com/l/pvgfm">Kit Completo Affitti Brevi 2026 (-€5 codice LANCIO)</a>
+  </header>
+
+  <main>
+    <div class="grid">
+      <div class="card calc-box">
+        <h2>Calcolatore Cedolare Secca Affitti Brevi 2026</h2>
+        <p>Simula netto, ritenuta portali (21% su lordo) e imposta sostitutiva (21% sul 1° immobile scelto, 26% sul 2° immobile; dal 3° immobile scatta obbligo P.IVA per L. 199/2025).</p>
+        <label>Incasso Lordo Annuo (€)</label>
+        <input type="number" id="ab_gross" value="18000" min="0" step="500" oninput="calcAB()">
+        <label>Immobile (1° con aliquota 21% oppure 2° con aliquota 26%)</label>
+        <select id="ab_rate" onchange="calcAB()">
+          <option value="0.21">1° Immobile designato in dichiarazione (21%)</option>
+          <option value="0.26">2° Immobile locato (26%)</option>
+        </select>
+        <label>Commissione Portale (Airbnb/Booking %)</label>
+        <input type="number" id="ab_fee" value="15" min="0" max="40" step="0.5" oninput="calcAB()">
+        <div class="result" id="ab_out"></div>
+        <a class="btn" href="https://aushciao.gumroad.com/l/pvgfm">Ottieni il Calcolatore Excel Completo + 5 Template (€19 con codice LANCIO)</a>
+      </div>
+
+      <div class="card calc-box">
+        <h2>Calcolatore Tasse Regime Forfettario 2026</h2>
+        <p>Simula reddito imponibile, imposta sostitutiva (5% start-up o 15% ordinaria) e contributi INPS Gestione Separata / Artigiani e Commercianti.</p>
+        <label>Fatturato Incassato Annuo (€)</label>
+        <input type="number" id="rf_rev" value="42000" min="0" step="1000" oninput="calcRF()">
+        <label>Coefficiente di Redditività ATECO (%)</label>
+        <select id="rf_coeff" onchange="calcRF()">
+          <option value="0.78">78% — Professionisti / Consulenti / IT / Freelance</option>
+          <option value="0.67">67% — Servizi / Artigiani / Altro</option>
+          <option value="0.86">86% — Costruzioni / Attività immobiliari</option>
+          <option value="0.40">40% — Commercio / Ricettività / Ristorazione</option>
+        </select>
+        <label>Aliquota Imposta Sostitutiva</label>
+        <select id="rf_tax" onchange="calcRF()">
+          <option value="0.05">5% (Primi 5 anni start-up)</option>
+          <option value="0.15">15% (Ordinaria)</option>
+        </select>
+        <div class="result" id="rf_out"></div>
+        <a class="btn" href="https://aushciao.gumroad.com/l/zepgte">Scarica il Kit Regime Forfettario Completo (€9)</a>
+      </div>
+    </div>
+
+    <h2>Checklist Conformità Affitti Brevi 2026 (CIN, BDSR, Alloggiati Web, Sicurezza)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Adempimento</th>
+          <th>Obbligo 2026</th>
+          <th>Sanzione in caso di controllo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>CIN (Codice Identificativo Nazionale)</strong></td>
+          <td>Esposizione obbligatoria all'esterno dello stabile e in ogni annuncio online (Airbnb, Booking, VRBO, sito diretto) tramite portale BDSR Ministero del Turismo.</td>
+          <td>Da €800 a €8.000 per mancata ottenimento; da €500 a €5.000 per mancata esposizione.</td>
+        </tr>
+        <tr>
+          <td><strong>Dotazioni Sicurezza (Estintori e Rilevatori)</strong></td>
+          <td>Rilevatori gas combustibili e monossido di carbonio (CO) + 1 estintore portatile a norma (min. 6 kg o 6 litri, classe 21A-113B) ogni 200 mq o per piano.</td>
+          <td>Da €600 a €6.000 per ciascuna violazione accertata.</td>
+        </tr>
+        <tr>
+          <td><strong>Alloggiati Web & Identificazione De Visu</strong></td>
+          <td>Invio schedine entro 24h (o entro 6h per soggiorni di 1 sola notte). Verifica identità conforme a Circolare Viminale e sentenza Consiglio di Stato n. 9101/2025.</td>
+          <td>Art. 109 TULPS (rilevanza penale: arresto fino a 3 mesi o ammenda fino a €206).</td>
+        </tr>
+        <tr>
+          <td><strong>Limite Imprenditorialità (L. 199/2025)</strong></td>
+          <td>Dal 2026 la presunzione di attività d'impresa (obbligo Partita IVA e SCIA) scatta a partire dal <strong>3° appartamento</strong> destinato a locazione breve (massimo 2 in regime privato).</td>
+          <td>Da €2.000 a €10.000 per esercizio abusivo senza SCIA/P.IVA.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Tutti i Kit e Strumenti Digitali Pronti all'Uso</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>1. Kit Affitti Brevi in Regola 2026 (IT + EN)</h3>
+        <p>Manuale operativo 2026, tabella comparativa 21 Regioni/Province Autonome, Calcolatore Excel (.xlsx) cedolare secca/portali e 5 template pronti (contratto locazione breve, delega, check-in, sicurezza, ricevuta tassa di soggiorno).</p>
+        <p><strong>Prezzo:</strong> €24 — <strong>€19 usando il codice sconto <code>LANCIO</code> (-€5)</strong></p>
+        <a class="btn" href="https://aushciao.gumroad.com/l/pvgfm">Vai al Kit Completo (€19 con LANCIO)</a>
+      </div>
+      <div class="card">
+        <h3>2. Tabella Gratuita 21 Regioni Affitti Brevi 2026</h3>
+        <p>Riepilogo PDF gratuito di CIR/CIN, portali regionali, ROSS1000/ISTAT e scadenze per tutte le 21 Regioni e Province Autonome italiane.</p>
+        <p><strong>Prezzo:</strong> Gratis (€0+)</p>
+        <a class="btn btn-green" href="https://aushciao.gumroad.com/l/juzsbw">Scarica Gratis (€0)</a>
+      </div>
+      <div class="card">
+        <h3>3. Kit Regime Forfettario 2026</h3>
+        <p>Tracker fatture, calcolo acconti/saldi giugno e novembre, verifica soglia €85.000 / €100.000 e simulatore INPS in formato Excel.</p>
+        <p><strong>Prezzo:</strong> €9</p>
+        <a class="btn" href="https://aushciao.gumroad.com/l/zepgte">Scarica Kit Forfettario (€9)</a>
+      </div>
+      <div class="card">
+        <h3>4. CSV Doctor — Pulizia e Riconciliazione File CSV</h3>
+        <p>Utility pronta all'uso per riparare CSV bancari, fatture elettroniche ed export gestionali (encoding UTF-8, separatori `;`/`,`, date e duplicati).</p>
+        <p><strong>Prezzo:</strong> €12</p>
+        <a class="btn" href="https://aushciao.gumroad.com/l/kqbfow">Ottieni CSV Doctor (€12)</a>
+      </div>
+      <div class="card">
+        <h3>5. Automate Small Business Python</h3>
+        <p>Raccolta di script Python testati per automatizzare report Excel/PDF, rinomina fatture, estrazione dati e pulizia anagrafiche clienti.</p>
+        <p><strong>Prezzo:</strong> €15</p>
+        <a class="btn" href="https://aushciao.gumroad.com/l/kekxni">Scarica Pack Python (€15)</a>
+      </div>
+      <div class="card">
+        <h3>6. Italian–English Freelance Checklist</h3>
+        <p>Checklist operativa bilingue IT/EN per freelancer che lavorano con clienti esteri (contratti, fatturazione reverse charge/extra-UE, onboarding).</p>
+        <p><strong>Prezzo:</strong> $7</p>
+        <a class="btn" href="https://aushciao.gumroad.com/l/pvzxlf">Scarica Checklist ($7)</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Aggiornato a Ottobre 2026 · Strumenti operativi per Host, Proprietari e Professionisti in Italia · Usa il codice <strong>LANCIO</strong> per €5 di sconto sul Kit Affitti Brevi 2026.
+  </footer>
+
+  <script>
+    function calcAB() {
+      const gross = parseFloat(document.getElementById('ab_gross').value) || 0;
+      const rate = parseFloat(document.getElementById('ab_rate').value) || 0.21;
+      const feePct = (parseFloat(document.getElementById('ab_fee').value) || 0) / 100;
+      const portalFee = gross * feePct;
+      const withholding21 = gross * 0.21;
+      const totalTax = gross * rate;
+      const extraBalance = Math.max(0, totalTax - withholding21);
+      const net = gross - portalFee - totalTax;
+      document.getElementById('ab_out').innerHTML =
+        `Commissioni portale: €${portalFee.toFixed(2)}<br>` +
+        `Ritenuta d'acconto 21% operata dal portale: €${withholding21.toFixed(2)}<br>` +
+        `Conguaglio in dichiarazione (${Math.round(rate*100)}%): €${extraBalance.toFixed(2)}<br>` +
+        `<strong>Netto stimato in tasca: €${net.toFixed(2)} (${gross > 0 ? ((net/gross)*100).toFixed(1) : 0}%)</strong>`;
+    }
+    function calcRF() {
+      const rev = parseFloat(document.getElementById('rf_rev').value) || 0;
+      const coeff = parseFloat(document.getElementById('rf_coeff').value) || 0.78;
+      const taxRate = parseFloat(document.getElementById('rf_tax').value) || 0.05;
+      const taxableBase = rev * coeff;
+      const inps = taxableBase * 0.2607;
+      const netTaxable = Math.max(0, taxableBase - inps);
+      const irpefSub = netTaxable * taxRate;
+      const net = rev - inps - irpefSub;
+      document.getElementById('rf_out').innerHTML =
+        `Reddito imponibile lordo (${Math.round(coeff*100)}%): €${taxableBase.toFixed(2)}<br>` +
+        `Contributi INPS Gestione Separata (26,07%): €${inps.toFixed(2)}<br>` +
+        `Imposta sostitutiva (${Math.round(taxRate*100)}%): €${irpefSub.toFixed(2)}<br>` +
+        `<strong>Netto stimato dopo INPS e imposte: €${net.toFixed(2)} (${rev > 0 ? ((net/rev)*100).toFixed(1) : 0}%)</strong>`;
+    }
+    calcAB();
+    calcRF();
+  </script>
+</body>
+</html>
